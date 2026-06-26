@@ -1,70 +1,90 @@
-# 快速开始
+# Quick Start
 
-## 1. 先备份
+For the underlying method, read docs/methodology.md. For immediate use, follow this guide.
 
-在复制模板前，先备份 Obsidian vault。规则模板会影响 AI 如何移动、整理和改写文件，备份永远是第一步。
+This guide helps you add AI workspace governance to an existing folder, repository, knowledge base, or Obsidian vault.
 
-## 2. 复制模板
+## 1. Back Up First
 
-把以下目录中的内容复制到你的 vault 根目录：
+Before copying templates or asking AI to reorganize files, back up the workspace.
+
+If the workspace is a Git repository, commit or stash current work first.
+
+If it is synced by cloud storage, make sure sync is stable before migration.
+
+## 2. Choose a Template
+
+Generic workspace:
 
 ```text
-templates/vault-root/
+templates/generic-workspace/
 ```
 
-复制后你的 vault 可以长这样：
+Obsidian vault:
 
 ```text
-0-Template
-1-Attachment
-2-Diary
-3-Inbox
-4-Wiki
-5-Projects
-6-Outputs
-7-Archive
-99_Vault_Management_Rules
+adapters/obsidian-vault/vault-root/
+```
+
+## 3. Copy Governance Rules
+
+Minimal installation:
+
+```text
+99_Workspace_Rules/
+```
+
+or, for Obsidian:
+
+```text
+99_Vault_Management_Rules/
+```
+
+Agent-ready installation also copies AI entry files:
+
+```text
 AGENTS.md
 .codex/AGENTS.md
 .claude/CLAUDE.md
 .agents/AGENTS.md
 ```
 
-如果你只使用某一个 AI 工具，可以只保留对应入口文件。
-
-## 3. 第一次让 AI 读取规则
-
-给 AI 的第一条指令可以这样写：
+## 4. First Prompt to AI
 
 ```text
-请先读取 99_Vault_Management_Rules/00-README.md、01-Vault-Structure.md 和 99-Safety-Rules.md。之后再根据任务类型读取对应规则。不要删除或批量移动文件，除非你先列出清单并得到确认。
+Please read the workspace governance rules before making changes. Start with the overview, structure rules, and safety rules. After reading them, summarize the folder responsibilities and safety boundaries. Do not move, delete, rename, or overwrite files until I confirm a concrete plan.
 ```
 
-## 4. 日常收集
+## 5. First Review
 
-- 临时想法放入 `3-Inbox/Ideas/`。
-- 网页剪藏放入 `3-Inbox/Clippings/`。
-- AI 对话或 AI 生成的原始内容放入 `3-Inbox/AI-Chats/`。
-- 未判断价值的文件放入 `3-Inbox/Temp/`。
-
-## 5. 日常整理
-
-整理时按这个顺序判断：
+Ask AI for a review-only pass:
 
 ```text
-原始材料 -> 3-Inbox
-长期知识 -> 4-Wiki
-具体项目 -> 5-Projects
-可交付成果 -> 6-Outputs
-冷存储 -> 7-Archive
+Please review this workspace structure and suggest where files should belong. Only provide recommendations. Do not move, rename, delete, or overwrite anything.
 ```
 
-## 6. 定期检查
+## 6. Small Batch Migration
 
-建议每周让 AI 轻量检查新增文件，每月检查一次 3-Inbox 到 7-Archive。检查报告保存到：
+After reviewing suggestions, migrate in small batches.
+
+A good first migration affects:
+
+- one folder, or
+- fewer than 10 files, or
+- one obvious category such as raw imports, old outputs, or inactive projects.
+
+## 7. Record Operations
+
+When AI changes files, it should create an operation log under the rules directory.
+
+Generic workspace:
 
 ```text
-99_Vault_Management_Rules/AI_Operations_Log/reviews/
+99_Workspace_Rules/AI_Operations_Log/
 ```
 
-检查只提出建议，不自动批量改名、移动或删除。
+Obsidian vault:
+
+```text
+99_Vault_Management_Rules/AI_Operations_Log/
+```

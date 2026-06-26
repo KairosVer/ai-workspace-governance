@@ -1,29 +1,33 @@
-# 设计原则
+# Design Principles
 
-## 1. Inbox 接住一切，但不长期停留
+## 1. Governance Is a Layer
 
-`3-Inbox` 的任务是降低收集摩擦。它不是长期知识库，也不是最终成果区。任何不确定、未消化、未判断的材料都可以先进去。
+AI workspace governance should sit above tools and below human intent. It does not replace judgment; it makes judgment explicit.
 
-## 2. Wiki 只放可复用理解
+## 2. Purpose Beats File Type
 
-`4-Wiki` 保存的是已经被理解和重新组织过的知识。判断标准不是“这篇文章重要吗”，而是“未来的我能不能直接复用这个判断、模型、方法或解释”。
+A Markdown file can be raw input, knowledge, project work, output, or archive. Place it by purpose.
 
-## 3. Projects 关注推进
+## 3. Raw Records Deserve Protection
 
-`5-Projects` 不是资料仓库，而是项目驾驶舱。它应该让人快速知道：目标是什么、当前在哪里、下一步做什么、风险是什么、关键链接在哪里。
+AI should not polish away source context, failed attempts, uncertainty, or original wording when those are part of the record.
 
-## 4. Outputs 关注交付
+## 4. Entry Files Route, Rules Govern
 
-`6-Outputs` 存放面向他人的正式产物或准正式产物。它可以有草稿，但草稿也应该服务明确输出。
+`AGENTS.md`, `CLAUDE.md`, and similar files should be short routing files. The detailed policy belongs in a centralized rules folder.
 
-## 5. Archive 不是垃圾桶
+## 5. Review Before Migration
 
-`7-Archive` 是冷存储。它保存暂时不用、已完成、已废弃但不该删除的内容。删除仍需遵守安全规则。
+Review reports are cheap. File moves are consequential. AI should suggest before acting.
 
-## 6. 规则集中，入口短小
+## 6. Archive Before Delete
 
-AI 入口文件只负责告诉不同工具去哪里读规则。详细规则集中在 `99_Vault_Management_Rules/`，避免多个入口互相冲突。
+Uncertainty should become archive, not deletion.
 
-## 7. AI 操作必须可审计
+## 7. One Operation, One Log
 
-AI 每次整理、迁移、检查、规则更新都应该生成单次操作记录。旧记录不反复修改，方便回溯。
+A single mutable mega-log becomes unreadable. One operation per log file creates an audit trail.
+
+## 8. Public Templates Must Be De-identified
+
+Examples should use fictional names and relative paths. Do not publish private paths, project names, credentials, or personal notes.

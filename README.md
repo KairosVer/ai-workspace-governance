@@ -1,97 +1,232 @@
-# Obsidian Vault Management Rules
+<div align="center">
 
-一套面向 Obsidian 个人知识库的管理规则模板，重点解决三件事：
+# AI Workspace Governance
 
-1. 笔记应该放在哪里。
-2. AI 助手整理笔记时应该先读哪些规则、遵守哪些边界。
-3. 规则、检查报告、迁移记录如何长期维护。
+**A lightweight operating system for folders that humans and AI agents manage together.**
 
-这个项目适合把 Obsidian 当作长期知识库、项目驾驶舱和输出工作台的人使用。你可以直接复制 `templates/vault-root/` 到自己的 vault 根目录，也可以只复制其中的 `99_Vault_Management_Rules/` 和 AI 入口文件。
+Make your workspace agent-ready without letting AI quietly move, rewrite, delete, or forget why it changed things.
 
-## 设计目标
+![Status](https://img.shields.io/badge/status-early%20template-2ea44f)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![AI Agents](https://img.shields.io/badge/AI%20agents-Codex%20%7C%20Claude%20%7C%20Generic-purple)
+![Workspace](https://img.shields.io/badge/workspace-governance-orange)
 
-- 低摩擦收集：临时想法、网页剪藏、AI 对话和外部资料先进入 Inbox。
-- 渐进式整理：只有经过理解、提炼、复用的内容才进入 Wiki。
-- 项目和知识分离：项目目录负责推进，Wiki 负责沉淀，Outputs 负责交付。
-- 安全优先：删除、批量移动、中文编码、图片本地化都有明确规则。
-- AI 可执行：给 Codex、Claude Code、通用 agent 准备短入口文件和详细规则文件。
-- 可审计：AI 的整理、迁移、检查和规则更新都写成单次操作记录。
+</div>
 
-## 推荐目录
+---
 
-```text
-0-Template
-1-Attachment
-2-Diary
-3-Inbox
-4-Wiki
-5-Projects
-6-Outputs
-7-Archive
-99_Vault_Management_Rules
+## Why This Exists
+
+AI agents are becoming capable file collaborators. They can scan folders, rewrite notes, move files, generate reports, update rules, and maintain long-running projects.
+
+That is useful, but it creates a new problem:
+
+> Once AI can act across a workspace, the workspace needs rules that both humans and AI can follow.
+
+Without governance, AI-assisted folders tend to drift into a familiar mess:
+
+- raw dumps mixed with polished knowledge
+- project notes scattered across output folders
+- summaries with missing sources
+- confident file moves with no migration record
+- old material deleted instead of archived
+- multiple AI tools reading different instructions
+
+**AI Workspace Governance** turns those risks into a simple, reusable method: structure, routing, safety, review, and audit trails.
+
+## The Method
+
+The method has two loops: a **file lifecycle** and an **AI governance loop**.
+
+```mermaid
+flowchart LR
+  A["01_Inbox<br/>Capture raw input"] --> B["02_Knowledge<br/>Extract reusable understanding"]
+  B --> C["03_Projects<br/>Execute active work"]
+  C --> D["04_Outputs<br/>Create deliverables"]
+  D --> E["05_Archive<br/>Retire without losing context"]
+  A -. "not useful now" .-> E
+  C -. "lessons learned" .-> B
+  D -. "source-backed insight" .-> B
+
+  classDef inbox fill:#fff3cd,stroke:#d39e00,color:#2f2500;
+  classDef knowledge fill:#d1ecf1,stroke:#0c8599,color:#073b44;
+  classDef project fill:#e2d9f3,stroke:#7048a8,color:#2d174f;
+  classDef output fill:#d4edda,stroke:#2b8a3e,color:#123d1c;
+  classDef archive fill:#e9ecef,stroke:#6c757d,color:#202428;
+
+  class A inbox;
+  class B knowledge;
+  class C project;
+  class D output;
+  class E archive;
 ```
 
-这不是 PARA、Zettelkasten 或 LYT 的复刻，而是一套偏实用的混合工作流：先收集，再理解，再推进项目，最后形成输出。
+```mermaid
+flowchart TB
+  H["Human intent"] --> R["AI entry file<br/>AGENTS.md / CLAUDE.md"]
+  R --> G["Central rules folder<br/>99_Workspace_Rules"]
+  G --> S["Safety gate<br/>delete, overwrite, batch moves"]
+  S -->|"safe / confirmed"| W["Workspace action"]
+  S -->|"risky"| C["Ask for confirmation"]
+  W --> L["Operation log<br/>one file per AI action"]
+  L --> V["Review later<br/>what changed and why"]
+  V --> G
 
-## 快速开始
+  classDef human fill:#f8f9fa,stroke:#495057,color:#212529;
+  classDef rules fill:#e7f5ff,stroke:#1971c2,color:#0b3158;
+  classDef safety fill:#fff0f6,stroke:#c2255c,color:#5f0f2f;
+  classDef action fill:#ebfbee,stroke:#2f9e44,color:#0b3d18;
+  classDef log fill:#fff9db,stroke:#f08c00,color:#4f2f00;
 
-1. 备份你的 Obsidian vault。
-2. 将 `templates/vault-root/` 中的内容复制到 vault 根目录。
-3. 按需保留 `.codex/AGENTS.md`、`.claude/CLAUDE.md`、`.agents/AGENTS.md` 或根目录 `AGENTS.md`。
-4. 让 AI 在整理 vault 前先读取：
-
-```text
-99_Vault_Management_Rules/00-README.md
-99_Vault_Management_Rules/01-Vault-Structure.md
-99_Vault_Management_Rules/99-Safety-Rules.md
+  class H human;
+  class R,G rules;
+  class S,C safety;
+  class W action;
+  class L,V log;
 ```
 
-5. 根据任务类型继续读取对应规则文件。
+## The Five Governance Layers
 
-详细步骤见 `docs/quick-start.md`。
+| Layer | Purpose | Core question |
+| --- | --- | --- |
+| Structure | Give every folder a job | Where should this file live? |
+| Routing | Keep AI instructions consistent | Which rules should the agent read first? |
+| Safety | Prevent irreversible mistakes | What needs human confirmation? |
+| Review | Let AI inspect before acting | What looks wrong, stale, duplicated, or misplaced? |
+| Audit | Make AI work traceable | What changed, why, and under which rules? |
 
-## 适配哪些 AI 助手
+This is the heart of the methodology. The folder names can change; the governance layers should remain.
 
-模板默认包含这些入口文件：
+## Who It Is For
+
+Use it for:
+
+- personal knowledge bases
+- Obsidian vaults
+- research folders
+- writing workspaces
+- documentation repositories
+- project archives
+- team shared folders
+- any long-running file workspace touched by AI assistants
+
+It is especially useful when the same workspace contains raw material, reusable knowledge, active projects, outputs, and old material.
+
+## Quick Start
+
+### Option 1: Generic AI workspace
+
+Copy this into your workspace root:
 
 ```text
+templates/generic-workspace/
+```
+
+You will get:
+
+```text
+00_System
+01_Inbox
+02_Knowledge
+03_Projects
+04_Outputs
+05_Archive
+99_Workspace_Rules
 AGENTS.md
 .codex/AGENTS.md
 .claude/CLAUDE.md
 .agents/AGENTS.md
 ```
 
-它们只负责路由，不承载详细规则。详细规则集中在：
+### Option 2: Obsidian vault
+
+Copy this adapter into your vault root:
 
 ```text
-99_Vault_Management_Rules/
+adapters/obsidian-vault/vault-root/
 ```
 
-这样做的好处是：不同 AI 工具读到的入口一致，规则更新也不会散落在多个系统文件里。
+It keeps Obsidian-friendly conventions such as wiki-links, attachments, diary folders, and vault-specific rules.
 
-## 规则文件
+### Option 3: Minimal install
+
+Only copy the rules folder and one AI entry file:
 
 ```text
-00-README.md                总览、阅读顺序和优先级
-01-Vault-Structure.md       顶层目录职责和判断标准
-02-Inbox-Rules.md           收集区、临时想法、剪藏和原始材料规则
-03-Wiki-Rules.md            长期知识页、命名、结构和维护规则
-04-Project-Rules.md         项目目录、项目首页、进展和决策规则
-05-Output-Rules.md          输出文档、草稿、定稿和来源追溯规则
-06-Archive-Rules.md         归档和冷存储规则
-07-Rule-Update-Rules.md     如何修改规则本身
-08-AI-Review-Rules.md       定期检查标题、位置、链接和重复内容
-09-Operation-Log-Rules.md   AI 操作记录的写法和保存位置
-99-Safety-Rules.md          删除、批量移动、编码、图片和链接安全规则
+99_Workspace_Rules/
+AGENTS.md
 ```
 
-## 社区约定
+Then adapt folder names to your existing workspace.
 
-- 规则文本使用中文，路径和文件名尽量使用稳定、可迁移的英文。
-- 不提交个人隐私、真实 vault 路径、账号信息、未公开研究资料或私有笔记。
-- 新规则应短、明确、可执行，并说明适用范围。
-- 大规模迁移、删除、重命名前，AI 必须先列清单并等待人工确认。
+## First Prompt To Give AI
 
-## 许可证
+```text
+Please read the workspace governance rules before making changes.
 
-本项目使用 MIT License。你可以自由复制、修改、分发和商用，但请自行承担用于真实知识库时的备份和数据安全责任。
+Start with:
+- 99_Workspace_Rules/00-README.md
+- 99_Workspace_Rules/01-Workspace-Structure.md
+- 99_Workspace_Rules/99-Safety-Rules.md
+
+After reading them, summarize the folder responsibilities and safety boundaries.
+Do not move, delete, rename, or overwrite files until I confirm a concrete plan.
+```
+
+For Obsidian, replace `99_Workspace_Rules` with `99_Vault_Management_Rules`.
+
+## What AI Is Allowed To Do
+
+```mermaid
+flowchart LR
+  A["Low risk<br/>suggest, summarize, format, create templates"] --> B["Medium risk<br/>small moves, link fixes, index updates"] --> C["High risk<br/>delete, overwrite, batch move, publish"]
+  A --> A1["AI may act if task is clear"]
+  B --> B1["AI should explain and log"]
+  C --> C1["AI must list paths and wait for confirmation"]
+
+  classDef low fill:#ebfbee,stroke:#2f9e44,color:#0b3d18;
+  classDef mid fill:#fff9db,stroke:#f08c00,color:#4f2f00;
+  classDef high fill:#fff0f6,stroke:#c2255c,color:#5f0f2f;
+  class A,A1 low;
+  class B,B1 mid;
+  class C,C1 high;
+```
+
+## Repository Layout
+
+```text
+templates/generic-workspace/     Tool-agnostic workspace template
+adapters/obsidian-vault/         Obsidian-specific adapter
+docs/                            Methodology, prompts, migration guides
+.github/                         Issue and pull request templates
+```
+
+## Documentation
+
+- `docs/methodology.md`：full methodology
+- `docs/quick-start.md`：installation and first use
+- `docs/ai-prompts.md`：copy-paste prompts for AI agents
+- `docs/migration-checklist.md`：safe migration checklist
+- `docs/customization-guide.md`：adapt the system to your domain
+- `docs/faq.md`：common questions
+- `docs/positioning.md`：project positioning and pitch
+
+## Design Principles
+
+- AI should read rules before touching files.
+- Entry files should route; centralized rules should govern.
+- Review should come before migration.
+- Archive should come before deletion.
+- Raw records should not be polished into fake certainty.
+- Every meaningful AI operation should leave a trace.
+- Public templates should never contain private paths, credentials, or personal notes.
+
+## Contributing
+
+Contributions are welcome. Good contributions make the rules clearer, safer, more portable, or easier for agents to execute.
+
+Please avoid adding personal paths, private notes, credentials, or domain-specific rules that only work for one private workflow.
+
+## License
+
+MIT License.

@@ -1,0 +1,28 @@
+name: Migration case
+description: Share a migration case or problem from an existing workspace
+title: "[Migration]: "
+labels: ["migration"]
+body:
+  - type: textarea
+    id: current
+    attributes:
+      label: Current structure
+      description: Use a de-identified folder structure. Do not include private notes or real sensitive paths.
+      placeholder: |
+        Inbox/
+        Notes/
+        Projects/
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: Migration goal
+      description: What problem are you trying to solve?
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Which folders should not be touched? Are there sync tools, plugins, repositories, or team constraints?

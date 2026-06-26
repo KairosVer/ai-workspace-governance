@@ -1,13 +1,22 @@
 # Changelog
 
-本项目遵循简化的 Keep a Changelog 风格记录重要变化。
+This project follows a simplified Keep a Changelog style.
+
+## 0.2.0 - 2026-06-26
+
+### Changed
+
+- Repositioned the project from an Obsidian-specific template to a general AI workspace governance project.
+- Moved Obsidian-specific content into `adapters/obsidian-vault/`.
+- Added `templates/generic-workspace/` for tool-agnostic workspaces.
+- Rewrote documentation around AI-managed workspaces, not only note-taking vaults.
 
 ## 0.1.0 - 2026-06-26
 
 ### Added
 
-- 初始公开版 Obsidian vault 管理规则模板。
-- 增加 `99_Vault_Management_Rules/` 规则目录。
-- 增加 Codex、Claude Code 和通用 agent 入口文件。
-- 增加 Inbox、Wiki、Projects、Outputs、Archive、安全、规则更新、AI 检查和操作记录规则。
-- 增加社区说明、贡献说明、安全说明和许可证。
+- Initial public Obsidian vault management rules template.
+- Added centralized rules directory.
+- Added Codex, Claude Code, and generic agent entry files.
+- Added Inbox, Wiki, Projects, Outputs, Archive, Safety, Rule Update, AI Review, and Operation Log rules.
+- Added community docs, contribution guide, security policy, and license.

@@ -1,0 +1,41 @@
+name: Rule improvement
+description: Suggest a change to a workspace governance rule
+title: "[Rule]: "
+labels: ["rule", "enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Where is the rule unclear, unsafe, too narrow, or hard to follow?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: How should the rule be changed?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Inbox
+        - Knowledge
+        - Projects
+        - Outputs
+        - Archive
+        - AI Review
+        - Safety
+        - Operation Log
+        - Obsidian Adapter
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk or compatibility
+      description: Could this affect existing workspace structures or AI entry files?
