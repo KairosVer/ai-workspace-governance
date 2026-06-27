@@ -23,3 +23,13 @@ Current adapter:
 ```text
 adapters/obsidian-vault/
 ```
+
+## Navigation Files
+
+Templates may include a small navigation layer:
+
+- `00_System/00-Home.md` for generic workspaces.
+- `8-Atlas/00-Home.md` for Obsidian vaults.
+- `00_Guide/` or `00-Guide/` folders for local folder guides.
+
+These files are intentionally short. They are entry points, not complete inventories.

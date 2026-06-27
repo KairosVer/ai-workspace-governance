@@ -19,3 +19,12 @@ Reports go to:
 ```
 
 Batch rename, batch move, overwrite, and deletion require confirmation.
+
+## Navigation Layer Review
+
+Check that:
+
+- `00_System/00-Home.md` remains a short launch page, not a full index.
+- Lifecycle folders keep guide pages inside `00_Guide/`.
+- Cross-folder navigation lives in maps, not scattered root-level index files.
+- Guide pages do not duplicate long file lists already visible from the filesystem or maps.

@@ -230,3 +230,17 @@ Please avoid adding personal paths, private notes, credentials, or domain-specif
 ## License
 
 MIT License.
+
+## Navigation Without Clutter
+
+A governed workspace needs navigation, but navigation should not become a second copy of the folder tree.
+
+This project uses three lightweight navigation patterns:
+
+| Pattern | Purpose | Where it lives |
+| --- | --- | --- |
+| Home | A short launch page for common actions | `00_System/00-Home.md` or `8-Atlas/00-Home.md` |
+| Maps / Atlas | Cross-folder routes and discovery paths | `00_System/10_Maps/` or `8-Atlas/` |
+| Guides | Durable local instructions for one folder | `00_Guide/` or `00-Guide/` inside lifecycle folders |
+
+Home starts the day. Maps help you find paths. Guides explain local folder rules. None of them should maintain long manual inventories.

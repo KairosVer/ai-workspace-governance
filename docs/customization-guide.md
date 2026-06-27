@@ -90,3 +90,13 @@ Update:
 - review rules
 - operation log rules
 - any automation that reads rules
+
+## Navigation Choices
+
+You can rename the navigation layer, but keep the responsibilities separate:
+
+- Home: launch page for common actions.
+- Maps or Atlas: discovery routes across folders.
+- Guides: local folder instructions inside each lifecycle folder.
+
+Avoid scattering root-level `index.md` files across every folder. If a folder needs a durable explanation, put it inside `00_Guide/` or `00-Guide/` so it is clearly a guide, not ordinary content.

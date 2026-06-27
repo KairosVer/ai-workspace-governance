@@ -210,3 +210,17 @@ A mature AI-governed workspace has these properties:
 - AI agents know what to read before acting.
 - Risky operations require confirmation.
 - Future humans can inspect what AI changed.
+
+## Navigation Layer
+
+The lifecycle folders answer where files live. A separate navigation layer answers how humans and AI should enter and move through the workspace.
+
+Use three small navigation surfaces:
+
+1. Home: a launch page for common actions and entry points.
+2. Maps or Atlas: cross-folder routes, topic maps, project maps, and system maps.
+3. Guides: local folder instructions stored inside `00_Guide/` or `00-Guide/`.
+
+This prevents root folders from filling up with loose `index.md` and `README.md` files, while avoiding a second, hand-maintained copy of the entire folder tree.
+
+Navigation pages should be stable and sparse. Temporary weekly tasks belong in projects, logs, or planning notes, not in the long-term map layer.

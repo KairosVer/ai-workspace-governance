@@ -88,3 +88,33 @@ Obsidian vault:
 ```text
 99_Vault_Management_Rules/AI_Operations_Log/
 ```
+
+## 8. Add Navigation Without Clutter
+
+After the rules are installed, add a small navigation layer:
+
+Generic workspace:
+
+```text
+00_System/00-Home.md
+00_System/10_Maps/Workspace-Map.md
+01_Inbox/00_Guide/Inbox-Guide.md
+02_Knowledge/00_Guide/Knowledge-Guide.md
+03_Projects/00_Guide/Projects-Guide.md
+04_Outputs/00_Guide/Outputs-Guide.md
+05_Archive/00_Guide/Archive-Guide.md
+```
+
+Obsidian vault:
+
+```text
+8-Atlas/00-Home.md
+8-Atlas/90-System-Maps/Atlas说明.md
+3-Inbox/00-Guide/Inbox说明.md
+4-Wiki/00-Guide/Wiki说明.md
+5-Projects/00-Guide/Projects说明.md
+6-Outputs/00-Guide/Outputs说明.md
+7-Archive/00-Guide/Archive说明.md
+```
+
+Keep Home short. Put cross-folder routes in maps. Put local folder rules in guides.

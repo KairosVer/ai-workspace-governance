@@ -13,6 +13,7 @@
 5-Projects
 6-Outputs
 7-Archive
+8-Atlas
 99_Vault_Management_Rules
 ```
 
@@ -135,3 +136,35 @@
 - 一份输出依赖很多项目资料：输出放在 Outputs，项目首页链接到输出。
 - 一份剪藏很重要但未消化：仍放 Inbox，等提炼后再创建 Wiki 页面。
 - 一份旧项目有复用价值：项目归档到 Archive，经验提炼到 Wiki。
+
+## 8-Atlas
+
+地图和导航层。只放开屏页、主题地图、项目地图、来源地图、输出地图、系统地图和跨目录路线，不放正文知识。
+
+推荐结构：
+
+```text
+8-Atlas/
+  00-Home.md
+  10-Topic-Maps/
+  20-Project-Maps/
+  30-Source-Maps/
+  40-Output-Maps/
+  90-System-Maps/
+    Atlas说明.md
+    库结构地图.md
+```
+
+## 目录说明页
+
+一级内容目录中的入口说明文件统一放入各自的 `00-Guide/` 子目录，避免 `index.md` 或 `README.md` 孤立散放在目录根部。
+
+```text
+3-Inbox/00-Guide/Inbox说明.md
+4-Wiki/00-Guide/Wiki说明.md
+5-Projects/00-Guide/Projects说明.md
+6-Outputs/00-Guide/Outputs说明.md
+7-Archive/00-Guide/Archive说明.md
+```
+
+这些说明页只写目录用途、常用入口和少量维护原则，不维护完整文件清单。完整路线交给 `8-Atlas`。
