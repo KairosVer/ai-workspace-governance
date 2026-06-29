@@ -1,24 +1,23 @@
-# AI Workspace Governance Methodology
+# Methodology
 
 AI Workspace Governance is a method for managing file-based workspaces that are maintained by both humans and AI agents.
 
 It is not a note-taking method, a project management app, or a prompt library. It is a governance layer for folders.
 
-## The Core Claim
+## Design Principles
 
-When AI can act on files, a workspace needs an explicit operating protocol.
+1. **Governance is a layer.** Sits above tools, below human intent. Makes judgment explicit, does not replace it.
+2. **Purpose beats file type.** A Markdown file can be raw input, knowledge, project work, output, or archive. Place it by purpose.
+3. **Raw records deserve protection.** AI should not polish away source context, failed attempts, uncertainty, or original wording.
+4. **Entry files route, rules govern.** `AGENTS.md`, `CLAUDE.md` should be short routing files. Detailed policy belongs in a centralized rules folder.
+5. **Review before migration.** Review reports are cheap. File moves are consequential. AI should suggest before acting.
+6. **Archive before delete.** Uncertainty should become archive, not deletion.
+7. **One operation, one log.** A single mutable mega-log becomes unreadable. One operation per log file creates an audit trail.
+8. **Public templates must be de-identified.** Use fictional names and relative paths. Do not publish private paths, credentials, or personal notes.
 
-That protocol should answer five questions:
+## The Two Loops
 
-1. Where should things go?
-2. What should AI read before acting?
-3. What actions require human confirmation?
-4. How do we inspect the workspace without immediately changing it?
-5. How do we remember what AI changed?
-
-## The Two-Loop Model
-
-### 1. The File Lifecycle Loop
+### 1. File Lifecycle Loop
 
 Every file is somewhere in a lifecycle:
 
@@ -26,7 +25,7 @@ Every file is somewhere in a lifecycle:
 Capture -> Understand -> Execute -> Deliver -> Retire
 ```
 
-This maps to folders:
+Maps to folders:
 
 ```text
 01_Inbox     Capture raw input
@@ -36,27 +35,23 @@ This maps to folders:
 05_Archive   Retire safely
 ```
 
-The lifecycle prevents a common failure: treating every file as the same kind of note.
+This prevents a common failure: treating every file as the same kind of note. A raw transcript, a reusable insight, a project decision, a final report, and an old draft should not live by the same rules.
 
-A raw transcript, a reusable insight, a project decision, a final report, and an old draft should not live by the same rules.
+### 2. Governance Loop
 
-### 2. The Governance Loop
-
-AI operations follow another loop:
+AI operations follow:
 
 ```text
 Intent -> Route -> Read Rules -> Safety Gate -> Act -> Log -> Review -> Improve Rules
 ```
 
-This loop prevents another common failure: letting AI act without memory or boundaries.
+This prevents another failure: letting AI act without memory or boundaries.
 
-## Layer 1: Structure
+## The Five Layers
 
-Structure gives every folder a job.
+### Layer 1: Structure
 
-The goal is not to create a perfect taxonomy. The goal is to make file placement decidable.
-
-Good structure rules say:
+Structure gives every folder a job. Good structure rules say:
 
 - what belongs here
 - what does not belong here
@@ -65,19 +60,9 @@ Good structure rules say:
 
 Bad structure rules are just category names with no decision criteria.
 
-## Layer 2: Routing
+### Layer 2: Routing
 
-AI tools read different instruction files:
-
-```text
-AGENTS.md
-CLAUDE.md
-.codex/AGENTS.md
-.claude/CLAUDE.md
-.agents/AGENTS.md
-```
-
-The method keeps those files short. They should only answer:
+AI tools read different instruction files (`AGENTS.md`, `CLAUDE.md`, `.codex/AGENTS.md`, etc.). The method keeps those files short. They should only answer:
 
 - where the real rules live
 - which rules must be read first
@@ -85,11 +70,9 @@ The method keeps those files short. They should only answer:
 
 Detailed policy belongs in the centralized rules folder.
 
-## Layer 3: Safety
+### Layer 3: Safety
 
-Safety rules define what AI must not do casually.
-
-High-risk operations include:
+High-risk operations:
 
 - deletion
 - recursive deletion
@@ -100,17 +83,11 @@ High-risk operations include:
 - publishing private material
 - changing final outputs
 
-The safety gate is simple:
+The safety gate: if the action is high-risk, AI lists paths, explains risk, suggests safer alternatives, and waits for confirmation.
 
-```text
-If the action is high-risk, AI lists paths, explains risk, suggests safer alternatives, and waits for confirmation.
-```
+### Layer 4: Review
 
-## Layer 4: Review
-
-AI is often most useful before it acts.
-
-A review pass can identify:
+AI is often most useful before it acts. A review pass can identify:
 
 - vague titles
 - misplaced files
@@ -123,9 +100,7 @@ A review pass can identify:
 
 Review reports should be suggestions. They should not silently become migrations.
 
-## Layer 5: Audit
-
-AI work should leave a trail.
+### Layer 5: Audit
 
 Operation logs answer:
 
@@ -137,24 +112,20 @@ Operation logs answer:
 - What did the user confirm?
 - What remains unresolved?
 
-The method uses one log file per operation instead of one giant mutable log.
+One log file per operation, not one giant mutable log.
 
 ## Decision Rules
 
 ### File Placement
 
-Ask:
-
-1. Is this raw or unprocessed? Put it in Inbox.
-2. Is this reusable understanding? Put it in Knowledge.
-3. Is this active execution? Put it in Projects.
-4. Is this a deliverable? Put it in Outputs.
-5. Is this inactive but worth keeping? Put it in Archive.
-6. Is this about how the workspace should operate? Put it in Rules.
+1. Raw or unprocessed? -> Inbox
+2. Reusable understanding? -> Knowledge
+3. Active execution? -> Projects
+4. Deliverable? -> Outputs
+5. Inactive but worth keeping? -> Archive
+6. About workspace operation? -> Rules
 
 ### AI Action Risk
-
-Ask:
 
 1. Could this lose user content?
 2. Could this break references?
@@ -163,40 +134,60 @@ Ask:
 5. Could this affect more than three files?
 6. Would rollback be hard?
 
-If yes, require confirmation.
+If yes to any, require confirmation.
 
-## Why This Works
+## Navigation Layer
 
-The method separates concerns that are often mixed together:
+The lifecycle folders answer where files live. A separate navigation layer answers how to enter and move through the workspace.
 
-- collection vs understanding
-- project work vs reusable knowledge
-- deliverables vs source material
-- archive vs deletion
-- AI suggestions vs AI actions
-- instructions vs audit records
+Three surfaces:
 
-This separation makes AI more useful because it gives agents a smaller, clearer decision space.
+| Surface | Purpose | Where |
+| --- | --- | --- |
+| Home | Launch page for common actions | `00_System/00-Home.md` or `8-Atlas/00-Home.md` |
+| Maps / Atlas | Cross-folder routes, topic maps, project maps | `00_System/10_Maps/` or `8-Atlas/` |
+| Guides | Local folder instructions | `00_Guide/` inside each lifecycle folder |
 
-## What To Customize
+This prevents root folders from filling up with loose `index.md` and `README.md` files. Navigation pages should be stable and sparse.
 
-Customize:
+## Customization
+
+**Safe to customize:**
 
 - folder names
+- project statuses
+- output categories
 - metadata fields
+- operation log naming convention
 - domain-specific subfolders
-- operation log format
-- review frequency
-- adapter conventions
+- language of rule files
 
-Keep:
+**Keep:**
 
-- centralized rules
+- centralized rules folder
 - short AI entry files
-- safety gate
-- review-before-migration
-- archive-before-delete
-- operation logs
+- explicit safety rules
+- human confirmation for high-risk operations
+- one operation log per AI action
+- relative paths in public docs and logs
+
+**Adaptation examples:**
+
+```text
+# Research workspace
+01_Inbox/literature/    02_Knowledge/methods/    03_Projects/experiments/
+04_Outputs/papers/     05_Archive/old-runs/
+
+# Writing workspace
+01_Inbox/fragments/     02_Knowledge/arguments/   03_Projects/books/
+04_Outputs/articles/    05_Archive/old-drafts/
+
+# Code repository docs
+docs/inbox/    docs/knowledge/    docs/projects/    docs/outputs/    docs/archive/
+.ai-rules/
+```
+
+If you rename the rules folder, update AI entry files, quick-start prompts, and any automation that reads rules.
 
 ## A Mature Workspace
 
@@ -210,17 +201,3 @@ A mature AI-governed workspace has these properties:
 - AI agents know what to read before acting.
 - Risky operations require confirmation.
 - Future humans can inspect what AI changed.
-
-## Navigation Layer
-
-The lifecycle folders answer where files live. A separate navigation layer answers how humans and AI should enter and move through the workspace.
-
-Use three small navigation surfaces:
-
-1. Home: a launch page for common actions and entry points.
-2. Maps or Atlas: cross-folder routes, topic maps, project maps, and system maps.
-3. Guides: local folder instructions stored inside `00_Guide/` or `00-Guide/`.
-
-This prevents root folders from filling up with loose `index.md` and `README.md` files, while avoiding a second, hand-maintained copy of the entire folder tree.
-
-Navigation pages should be stable and sparse. Temporary weekly tasks belong in projects, logs, or planning notes, not in the long-term map layer.
