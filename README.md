@@ -31,6 +31,18 @@ Every file has a job. Every AI action has a gate.
 
 Folder names can change; the governance layers should remain.
 
+## First Principles
+
+The five layers above are implementations of five observations:
+
+1. **Capability requires boundaries, not suppression.** AI power is made traceable, not removed.
+2. **Judgment must be made explicit.** Implicit human judgment becomes written rules.
+3. **Closed loops beat perfect rules.** Feedback corrects drift.
+4. **Reversibility takes priority over efficiency.** Prefer undoable actions.
+5. **Design for minimum trust.** Assume AI forgets rules between sessions.
+
+See `docs/methodology.md` for the full reasoning.
+
 ## Execution Mechanism
 
 Rules do not execute themselves. The method uses session-level triggers:

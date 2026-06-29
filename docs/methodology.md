@@ -4,7 +4,64 @@ AI Workspace Governance is a method for managing file-based workspaces that are 
 
 It is not a note-taking method, a project management app, or a prompt library. It is a governance layer for folders.
 
+## First Principles
+
+The method rests on five observations about what happens when AI can modify files.
+
+### 1. Capability requires boundaries, not suppression
+
+AI can scan folders, rewrite notes, move files, and maintain projects. This is power. Governance does not remove that power; it makes the power traceable. An AI that acts within explicit boundaries is more useful than one that acts freely but unpredictably.
+
+**Implementation**: Safety rules define high-risk operations. Entry files route agents to rules before they act. Every action has a gate.
+
+### 2. Judgment must be made explicit
+
+Human judgment is implicit and fast: "this belongs here, not there." When AI executes, that judgment must become a written rule. Otherwise AI is either too cautious (asking about every small action) or too aggressive (moving files without understanding why).
+
+**Implementation**: Structure rules say what belongs where, not just category names. Placement is decidable, not subjective.
+
+### 3. Closed loops beat perfect rules
+
+A rough system with feedback is more reliable than a perfect system without it. Rules drift. Folders rot. Projects stall. The question is not "are the rules correct?" but "can the system detect and correct when they are not?"
+
+**Implementation**: Session-start state reading, post-action self-check, session-end logging. Review reports surface drift before it compounds.
+
+### 4. Reversibility takes priority over efficiency
+
+Deletion is irreversible. Archiving is reversible. When uncertain, the system should prefer the reversible option. This is not caution for its own sake; it is the recognition that AI mistakes are cheaper to undo than to discover too late.
+
+**Implementation**: Archive before delete. Batch operations require confirmation. High-risk actions list paths and wait.
+
+### 5. Design for minimum trust
+
+Do not assume AI will read the rules. Design as if AI will forget rules between sessions. Entry files force routing. Operation logs force accountability. Self-checks force verification. Trust is earned through trails, not assumed through prompts.
+
+**Implementation**: Short entry files that must be read first. One log per operation. Post-action self-check as a mandatory step.
+
+### How the principles connect
+
+| Principle | What it produces | Where it lives |
+| --- | --- | --- |
+| Boundaries | Safety rules | `99-Safety-Rules.md` |
+| Explicit judgment | Structure rules | `01-Structure.md`, folder-specific rules |
+| Closed loops | Execution rules | `09-Execution-Rules.md` |
+| Reversibility | Archive rules, confirmation gates | `06-Archive-Rules.md`, safety gate |
+| Minimum trust | Entry files, operation logs | `AGENTS.md`, `07-Rule-Update-Rules.md` |
+
+The rest of this document describes how these principles turn into a working system.
+
 ## Design Principles
+
+The following operational principles are derived from the First Principles above:
+
+1. **Governance is a layer.** Sits above tools, below human intent. Makes judgment explicit, does not replace it.
+2. **Purpose beats file type.** A Markdown file can be raw input, knowledge, project work, output, or archive. Place it by purpose.
+3. **Raw records deserve protection.** AI should not polish away source context, failed attempts, uncertainty, or original wording.
+4. **Entry files route, rules govern.** `AGENTS.md`, `CLAUDE.md` should be short routing files. Detailed policy belongs in a centralized rules folder.
+5. **Review before migration.** Review reports are cheap. File moves are consequential. AI should suggest before acting.
+6. **Archive before delete.** Uncertainty should become archive, not deletion.
+7. **One operation, one log.** A single mutable mega-log becomes unreadable. One operation per log file creates an audit trail.
+8. **Public templates must be de-identified.** Use fictional names and relative paths. Do not publish private paths, credentials, or personal notes.
 
 1. **Governance is a layer.** Sits above tools, below human intent. Makes judgment explicit, does not replace it.
 2. **Purpose beats file type.** A Markdown file can be raw input, knowledge, project work, output, or archive. Place it by purpose.
