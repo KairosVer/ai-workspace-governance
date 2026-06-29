@@ -31,6 +31,16 @@ Every file has a job. Every AI action has a gate.
 
 Folder names can change; the governance layers should remain.
 
+## Execution Mechanism
+
+Rules do not execute themselves. The method uses session-level triggers:
+
+- **Session start**: read workspace state (inbox backlog, stale projects, last review date)
+- **After action**: self-check (links valid? empty dirs? metadata? logged?)
+- **Session end**: confirm log written, list unresolved issues, suggest next steps
+
+This turns static rules into a running system.
+
 ## Quick Start
 
 ### 1. Back up first

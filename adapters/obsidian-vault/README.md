@@ -1,23 +1,40 @@
-# Templates
+# Obsidian Vault Adapter
 
-`vault-root/` 是可复制到 Obsidian vault 根目录的模板。
+`vault-root/` is a template you can copy into an Obsidian vault root.
 
-你可以完整复制，也可以按需复制：
+Copy options:
 
-- 只想使用规则：复制 `99_Vault_Management_Rules/`。
-- 想让 AI 自动读取规则：同时复制 `AGENTS.md`、`.codex/AGENTS.md`、`.claude/CLAUDE.md` 或 `.agents/AGENTS.md`。
-- 想采用完整目录工作流：复制整个 `vault-root/`。
+- Rules only: copy `99_Vault_Management_Rules/`.
+- AI-ready: also copy `AGENTS.md` and one of `.agents/`, `.claude/`, `.codex/`.
+- Full workflow: copy the entire `vault-root/`.
 
-复制前请备份原 vault。复制后请按自己的使用习惯删减空目录。
+Back up your vault before copying. Remove empty directories after copying to fit your needs.
+
+## Rule Files
+
+```text
+99_Vault_Management_Rules/
+  00-README.md              Overview and reading order
+  01-Vault-Structure.md    Folder structure and placement rules
+  02-Inbox-Rules.md        Raw material handling
+  03-Wiki-Rules.md         Knowledge page standards
+  04-Project-Rules.md      Project structure and lifecycle
+  05-Output-Rules.md       Deliverable standards
+  06-Archive-Rules.md      Cold storage rules
+  07-Rule-Update-Rules.md  How to update rules + operation log rules
+  08-AI-Review-Rules.md    AI review procedures
+  09-Atlas-Rules.md        Navigation and map page rules
+  10-AI-Execution-Rules.md Session-level execution triggers
+  99-Safety-Rules.md       Safety boundaries (highest priority)
+  AI_Operations_Log/        Operation logs (one file per action)
+```
 
 ## Navigation Layer
 
-The Obsidian adapter includes:
-
 ```text
-8-Atlas/00-Home.md
-8-Atlas/90-System-Maps/Atlas说明.md
-*/00-Guide/*说明.md
+8-Atlas/00-Home.md          Launch page (Homepage plugin target)
+8-Atlas/90-System-Maps/     System maps
+*/00-Guide/                 Local folder guides
 ```
 
-Use `00-Home.md` as the Homepage plugin target if you use that plugin. Use Atlas pages for navigation routes. Use `00-Guide/` pages for local folder purpose and rules.
+Use `00-Home.md` as the Homepage plugin target. Use Atlas pages for navigation routes. Use `00-Guide/` pages for local folder purpose and rules.

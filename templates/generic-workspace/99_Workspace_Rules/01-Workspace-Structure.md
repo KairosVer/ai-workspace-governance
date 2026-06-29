@@ -112,3 +112,7 @@ Recommended guide files:
 Guide pages should explain folder purpose, common entry points, and local rules. They should not maintain complete file inventories. Use `00_System/10_Maps/` for discovery maps and cross-folder routes.
 
 `00_System/00-Home.md` is the recommended workspace launch page. It should stay short: common actions first, then links to maps, guides, projects, outputs, and rules.
+
+## Empty Directory Policy
+
+Subfolders listed in rules are suggested skeletons, not requirements. Do not pre-create empty subfolders. Create them when there is content. Delete long-empty directories to avoid noise in reviews.
